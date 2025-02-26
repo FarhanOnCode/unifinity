@@ -169,7 +169,7 @@ function logoutWithPortal() {
         
         // Navigate to login page after animation completes
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         }, 1200); // This should match the portal animation duration
     }, 300);
 }
