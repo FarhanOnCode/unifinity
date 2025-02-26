@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifinity: Cosmic Math Clash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;700&family=Bangers&display=swap" rel="stylesheet">
+    <style>
+/* Dynamic Space Background with Moving Elements */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom, #0a0029, #1a0066);
+    position: relative;
+}
+
+/* Moving Space Objects Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 40px 60px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 20px 50px, rgba(255,255,255,0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 30px 100px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 60px, rgba(255,255,255,0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 110px 90px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 190px 150px, rgba(255,255,255,0.8), rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: movingStars 100s linear infinite;
+    z-index: -2;
+}
+
+@keyframes movingStars {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* Floating Cosmic Elements */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42'%3E%3Cpath d='M21,2 L2,11 L2,31 L21,40 L40,31 L40,11 L21,2 Z' fill='none' stroke='%238A2BE2' stroke-width='1'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='20' fill='none' stroke='%2300FFFF' stroke-width='1'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpolygon points='30,5 55,50 5,50' fill='none' stroke='%23FF00FF' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 80px 80px, 120px 120px, 160px 160px;
+    background-repeat: repeat;
+    animation: floatingShapes 120s linear infinite;
+}
+
+@keyframes floatingShapes {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    100% { background-position: 1000px 1000px, -1000px 500px, 500px -500px; }
+}
+
+/* Nebula Effect */
+.nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.1), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(128, 0, 255, 0.2), transparent 60%);
+    z-index: -1;
+    animation: pulseNebula 15s ease-in-out infinite alternate;
+}
+
+@keyframes pulseNebula {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.6; }
+}
+
+/* Enhanced Title with Cosmic Glow */
+h1 {
+    font-size: 60px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 30px #0ff,
+        0 0 40px #ff00de,
+        0 0 70px #ff00de;
+    margin-top: 30px;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Settings Panel with Cosmic Glow */
+.settings {
+    display: flex;
+    gap: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+    margin: 30px auto;
+    justify-content: center;
+    background: rgba(20, 0, 50, 0.7);
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 10px rgba(128, 0, 255, 0.5),
+        0 0 20px rgba(128, 0, 255, 0.3),
+        inset 0 0 15px rgba(128, 0, 255, 0.3);
+    backdrop-filter: blur(5px);
+    max-width: 800px;
+    z-index: 10;
+    position: relative;
+    border: 1px solid rgba(128, 0, 255, 0.3);
+}
+
+/* Enhanced Select Elements */
+select {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    background: rgba(0, 0, 40, 0.8);
+    color: #0ff;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+select:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    border-color: #0ff;
+    transform: scale(1.05);
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+/* Difficulty Colors */
+#difficulty.easy {
+    border-color: rgba(0, 255, 0, 0.7);
+    background: rgba(0, 50, 0, 0.8);
+    color: #0f0;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+#difficulty.medium {
+    border-color: rgba(255, 165, 0, 0.7);
+    background: rgba(50, 30, 0, 0.8);
+    color: #ffa500;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+    text-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
+}
+
+#difficulty.hard {
+    border-color: rgba(255, 0, 0, 0.7);
+    background: rgba(50, 0, 0, 0.8);
+    color: #f00;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+}
+
+/* Game Container with improved visuals */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 5;
+}
+
+/* Static Hero with Glow Effect */
+#hero img {
+    width: 170px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.7));
+    transition: filter 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+    100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+}
+
+/* Enhanced Battlefield Layout */
+.battlefield {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    padding: 30px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* Monster Enhancements with Glow */
+.monster {
+    width: 150px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.6));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.monsters-container {
+    display: flex;
+    gap: 50px;
+    position: relative;
+}
+
+/* Individual Monster Glows */
+.monsters-container .monster:nth-child(1)::before,
+.monsters-container .monster:nth-child(2)::before,
+.monsters-container .monster:nth-child(3)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.monsters-container .monster:nth-child(1)::before {
+    animation: monsterGlow 4s infinite ease-in-out;
+}
+
+.monsters-container .monster:nth-child(2)::before {
+    animation: monsterGlow 4s infinite ease-in-out 1.3s;
+}
+
+.monsters-container .monster:nth-child(3)::before {
+    animation: monsterGlow 4s infinite ease-in-out 2.6s;
+}
+
+@keyframes monsterGlow {
+    0% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); }
+    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+    100% { opacity: 0.4; transform: translate(-50%, -50%) scale(0.9); }
+}
+
+/* Enhanced Monster Hover */
+.monster:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 0, 255, 1));
+    transform: scale(1.1);
+}
+
+/* Improved Disappear Animation */
+.disappear {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Enhanced Blood Effect */
+.blood-effect {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: url('images/green_blood.png') no-repeat center;
+    background-size: contain;
+    filter: hue-rotate(20deg) brightness(1.2) drop-shadow(0 0 15px rgba(0, 255, 0, 0.7));
+    z-index: 3;
+    animation: enhancedBloodEffect 0.8s ease-out forwards;
+}
+
+@keyframes enhancedBloodEffect {
+    0% { opacity: 0; transform: scale(0.5); filter: brightness(2) hue-rotate(20deg) drop-shadow(0 0 20px rgba(0, 255, 0, 1)); }
+    40% { opacity: 1; transform: scale(1.3); filter: brightness(1.5) hue-rotate(20deg) drop-shadow(0 0 15px rgba(0, 255, 0, 0.8)); }
+    100% { opacity: 0; transform: scale(1.8); filter: brightness(0.8) hue-rotate(20deg) drop-shadow(0 0 10px rgba(0, 255, 0, 0.5)); }
+}
+
+/* Enhanced Question Box */
+.question-box {
+    background: rgba(10, 0, 30, 0.8);
+    padding: 30px 40px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 5;
+    box-shadow: 
+        0 0 20px rgba(128, 0, 255, 0.4),
+        inset 0 0 10px rgba(128, 0, 255, 0.2);
+    border: 1px solid rgba(128, 0, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.question-box::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, 
+        rgba(128, 0, 255, 0) 0%, 
+        rgba(128, 0, 255, 0.3) 25%, 
+        rgba(0, 255, 255, 0.3) 50%, 
+        rgba(255, 0, 255, 0.3) 75%, 
+        rgba(128, 0, 255, 0) 100%);
+    border-radius: 25px;
+    z-index: -1;
+    animation: borderGlow 4s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 400% 0%; }
+}
+
+.question-box p {
+    font-family: 'Bangers', cursive;
+    font-size: 40px;
+    color: #ffeb3b;
+    text-shadow: 
+        3px 3px 5px rgba(255, 87, 34, 0.8),
+        0 0 10px rgba(255, 255, 0, 0.6),
+        0 0 20px rgba(255, 255, 0, 0.4);
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+/* Enhanced Input Field */
+input[type="number"] {
+    padding: 15px 20px;
+    font-size: 24px;
+    border-radius: 15px;
+    border: 3px solid rgba(0, 255, 255, 0.4);
+    width: 220px;
+    text-align: center;
+    background: rgba(0, 0, 50, 0.8);
+    color: #0ff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s;
+    margin-right: 20px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #0ff;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), inset 0 0 15px rgba(0, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Enhanced Submit Button */
+button {
+    padding: 15px 30px;
+    font-size: 22px;
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #ff0055, #ff7700);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+    transition: all 0.3s;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+    z-index: -1;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 30px rgba(255, 0, 85, 0.7);
+}
+
+button:hover::before {
+    transform: scale(1);
+    animation: pulseButton 2s infinite;
+}
+
+@keyframes pulseButton {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+/* Enhanced Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a0050, #000050);
+    padding: 40px;
+    border-radius: 25px;
+    position: relative;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 0 0 40px rgba(128, 0, 255, 0.6);
+    animation: modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(128, 0, 255, 0.4);
+    max-width: 80%;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, 
+        rgba(128, 0, 255, 0) 0%, 
+        rgba(128, 0, 255, 0.4) 25%, 
+        rgba(0, 255, 255, 0.4) 50%, 
+        rgba(255, 0, 255, 0.4) 75%, 
+        rgba(128, 0, 255, 0) 100%);
+    border-radius: 30px;
+    z-index: -1;
+    animation: borderGlow 4s linear infinite;
+}
+
+@keyframes modalAppear {
+    0% { transform: scale(0.7); opacity: 0; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal button {
+    margin-top: 30px;
+    padding: 15px 40px;
+}
+
+/* Enhanced Music Button */
+#music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7700ff, #0055ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(119, 0, 255, 0.5);
+    z-index: 1000;
+}
+
+#music-btn::before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(119, 0, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+#music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(119, 0, 255, 0.8);
+}
+
+/* Add this to your HTML to create the nebula effect */
+.nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    .settings {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .battlefield {
+        flex-direction: column;
+    }
+    
+    .question-box p {
+        font-size: 28px;
+    }
+    
+    input[type="number"] {
+        width: 120px;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+/* Enhanced Cosmic Button Styles */
+.cosmic-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #5000ff, #00ffff);
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(80, 0, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+    letter-spacing: 1px;
+}
+
+.cosmic-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.6s ease;
+    z-index: -1;
+}
+
+.cosmic-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(80, 0, 255, 0.7);
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.cosmic-button:hover::before {
+    left: 100%;
+    animation: shineEffect 1.5s infinite;
+}
+
+@keyframes shineEffect {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Cosmic Portal Animation for Logout */
+.cosmic-button.logging-out {
+    animation: portalExit 1.2s forwards;
+    pointer-events: none;
+}
+
+@keyframes portalExit {
+    0% {
+        transform: translateY(-5px) scale(1.05) rotate(0deg);
+        filter: brightness(1) hue-rotate(0deg);
+        box-shadow: 0 10px 30px rgba(80, 0, 255, 0.7);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.5) rotate(180deg);
+        filter: brightness(2) hue-rotate(180deg);
+        box-shadow: 0 0 50px rgba(80, 0, 255, 1), 0 0 100px rgba(0, 255, 255, 0.8);
+    }
+    100% {
+        transform: translateY(-50px) scale(0.1) rotate(360deg);
+        filter: brightness(3) hue-rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Stars Burst Effect */
+.cosmic-button.logging-out::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 0 2px rgba(255, 255, 255, 0.7),
+        30px -30px 0 1px rgba(255, 255, 255, 0.6),
+        -30px -50px 0 1px rgba(255, 255, 255, 0.6),
+        30px 30px 0 1px rgba(255, 255, 255, 0.6),
+        -30px 30px 0 1px rgba(255, 255, 255, 0.6),
+        60px 0px 0 1px rgba(255, 255, 255, 0.6),
+        -60px 0px 0 1px rgba(255, 255, 255, 0.6),
+        0px 60px 0 1px rgba(255, 255, 255, 0.6),
+        0px -60px 0 1px rgba(255, 255, 255, 0.6);
+    animation: starsBurst 1s forwards;
+}
+
+@keyframes starsBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 0;
+    }
+}
+
+/* Page Portal Transition Effect */
+.portal-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 40, 0.97) 100%);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.portal-transition.active {
+    opacity: 1;
+    pointer-events: all;
+    animation: portalSwirl 1.2s forwards;
+}
+
+@keyframes portalSwirl {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(2) rotate(360deg);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Unifinity: Cosmic Math Clash</h1>
+    <div class="settings">
+        
+        <label for="operation">Select Operation:</label>
+        <select id="operation">
+            <option value="addition">Addition</option>
+            <option value="subtraction">Subtraction</option>
+            <option value="multiplication">Multiplication</option>
+            <option value="division">Division</option>
+        </select>
+
+        <label for="difficulty">Select Difficulty:</label>
+        <select id="difficulty" onchange="changeDifficultyColor(this)">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+
+    <div class="game-container">
+        <div class="battlefield">
+            <div id="hero"><img src="images/hero4.png" alt="Hero"></div>
+            <div class="monsters-container" id="monsters">
+                <img class="monster" src="images/monster.png" alt="Monster">
+                <img class="monster" src="images/monster.png" alt="Monster">
+                <img class="monster" src="images/monster.png" alt="Monster">
+            </div>
+        </div>
+
+        <div class="question-box">
+            <p id="question">What is 2 + 2?</p>
+            <input type="number" id="answer" placeholder="Enter">
+            <button onclick="checkAnswer()">Submit</button>
+        </div>
+    </div>
+
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button onclick="location.reload()">Play Again</button>
+            <button onclick="window.location.href='login.html'">Quit Game</button>
+        </div>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="sound/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <button id="music-btn" onclick="toggleMusic()">🔇</button>
+
+    
+    <script src="script.js"></script>
+    </body>
+
+    <script src="script.js"></script>
+  
+      
+</body>
+</html>
