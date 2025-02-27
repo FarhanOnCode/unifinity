@@ -9,13 +9,18 @@
     <style>
 /* Dynamic Space Background with Moving Elements */
 /* Enhanced Mobile Responsiveness */
+
+/* Main Mobile Responsiveness Fixes */
 @media (max-width: 768px) {
+    /* Fix header and title */
     h1 {
         font-size: 32px;
         margin-top: 20px;
         padding: 0 10px;
+        letter-spacing: 2px;
     }
     
+    /* Fix settings panel */
     .settings {
         flex-direction: column;
         padding: 15px;
@@ -34,6 +39,7 @@
         padding: 10px;
     }
     
+    /* Fix battlefield layout */
     .battlefield {
         flex-direction: column;
         gap: 30px;
@@ -52,10 +58,14 @@
         width: 100px;
     }
     
+    /* Fix question box */
     .question-box {
         padding: 20px;
         width: 90%;
         max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .question-box p {
@@ -78,6 +88,7 @@
         max-width: 200px;
     }
     
+    /* Fix modal */
     .modal-content {
         padding: 20px;
         font-size: 20px;
@@ -89,6 +100,7 @@
         margin-top: 15px;
     }
     
+    /* Fix music button */
     #music-btn {
         width: 50px;
         height: 50px;
@@ -97,6 +109,7 @@
         right: 15px;
     }
     
+    /* Fix cosmic button */
     .cosmic-button {
         top: 15px;
         right: 15px;
@@ -105,7 +118,7 @@
     }
 }
 
-/* Small Mobile Devices */
+/* Small Mobile Devices Optimization */
 @media (max-width: 480px) {
     h1 {
         font-size: 26px;
@@ -133,7 +146,6 @@
     }
     
     input[type="number"] {
-        width: 100%;
         max-width: 150px;
         font-size: 16px;
     }
@@ -147,20 +159,11 @@
     }
 }
 
-/* Fix for the game layout */
+/* Fix container width issues */
 .game-container {
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
-}
-
-/* Fix for input and button layout on mobile */
-@media (max-width: 768px) {
-    .question-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 /* Enhanced touch targets for mobile */
@@ -177,13 +180,6 @@
 }
 
 /* Fix viewport height issues on mobile */
-@media (max-width: 768px) {
-    .game-container {
-        min-height: 50vh;
-    }
-}
-
-/* Fix for small height devices */
 @media (max-height: 700px) {
     .game-container {
         min-height: auto;
@@ -195,7 +191,7 @@
     }
 }
 
-/* Fix for landscape orientation */
+/* Landscape orientation optimization */
 @media (max-width: 900px) and (orientation: landscape) {
     .settings {
         flex-direction: row;
@@ -225,6 +221,7 @@
         min-height: auto;
     }
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -943,6 +940,9 @@ button:hover::before {
 </head>
 <body>
     <h1>Unifinity: Cosmic Math Clash</h1>
+    <div id="player-profile">
+        <span id="display-username"></span>
+    </div>
     <div class="settings">
         
         <label for="operation">Select Operation:</label>
@@ -983,7 +983,7 @@ button:hover::before {
             <h2 id="modalTitle"></h2>
             <p id="modalMessage"></p>
             <button onclick="location.reload()">Play Again</button>
-            <button onclick="window.location.href='loginup.html'">Quit Game</button>
+            <button onclick="window.location.href='i.html'">Quit Game</button>
         </div>
     </div>
     <audio id="bg-music" loop>

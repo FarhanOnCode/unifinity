@@ -395,12 +395,12 @@
         <form id="signup-form">
             <div class="form-group">
                 <label for="username">Cosmic Username</label>
-                <input type="text" id="username" placeholder="Enter your galactic identifier" required>
+                <input type="text" id="username" placeholder="Enter your cosmic id" required>
             </div>
             
             <div class="form-group">
                 <label for="email">Space Email</label>
-                <input type="email" id="email" placeholder="cosmic.explorer@galaxy.com" required>
+                <input type="email" id="email" placeholder="Unifinity@galaxy.com" required>
             </div>
             
             <div class="form-group">
@@ -422,18 +422,39 @@
     </div>
 
     <script>
-        // Form validation
+        function validatePassword(password) {
+            const minLength = /.{6,}/;  // At least 6 characters
+            const upperCase = /[A-Z]/;  // At least one uppercase letter
+            const lowerCase = /[a-z]/;  // At least one lowercase letter
+            const number = /[0-9]/;     // At least one number
+            const specialChar = /[!@#$%^&*]/; // At least one special character
+
+            return minLength.test(password) &&
+                   upperCase.test(password) &&
+                   lowerCase.test(password) &&
+                   number.test(password) &&
+                   specialChar.test(password);
+        }
+
         document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
-            
+
             if (password !== confirmPassword) {
                 alert('Your passcodes do not match! Please try again, cosmic explorer.');
                 return;
             }
             
+            if (!validatePassword(password)) {
+                alert('Passcode must be at least 8 characters long and include an uppercase letter, lowercase letter, a number, and a special character.');
+                return;
+            }
+
+            localStorage.setItem("playerName", username); // Store username
+
             // Add successful signup animation
             const button = document.querySelector('.cosmic-button');
             button.innerHTML = "Preparing Launch...";
@@ -443,6 +464,28 @@
             setTimeout(() => {
                 window.location.href = 'loginup.html';
             }, 2000);
+            document.addEventListener("DOMContentLoaded", function() {
+    // Fetch stored username and initials
+    const storedUsername = localStorage.getItem("playerName") || "Guest";
+    let storedInitials = localStorage.getItem("playerInitials");
+
+    // Generate initials if missing
+    if (!storedInitials && storedUsername !== "Guest") {
+        let words = storedUsername.trim().split(" ");
+        storedInitials = words.length === 1 ? words[0][0].toUpperCase() : words[0][0].toUpperCase() + words[1][0].toUpperCase();
+        localStorage.setItem("playerInitials", storedInitials);
+    }
+
+    // Display username in profile section
+    const usernameDisplay = document.getElementById("display-username");
+    if (usernameDisplay) {
+        usernameDisplay.innerHTML = `
+            <div class="profile-icon">${storedInitials}</div> 
+            <strong>${storedUsername}</strong>
+        `;
+    }
+});
+
         });
     </script>
 </body>

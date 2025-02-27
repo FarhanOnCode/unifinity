@@ -11,6 +11,17 @@ let bgMusic = document.querySelector("#bg-music");
 let musicButton = document.querySelector("#music-btn");
 let isMusicPlaying = false;
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch stored username
+    const storedUsername = localStorage.getItem("playerName");
+    
+    // Display username in profile section
+    const usernameDisplay = document.getElementById("display-username");
+    if (storedUsername && usernameDisplay) {
+        usernameDisplay.innerHTML = `🚀Player:<strong>${storedUsername}</strong>`;
+    }
+});
+
 // Initialize the game
 function initGame() {
     generateQuestion();
