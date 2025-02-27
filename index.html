@@ -423,7 +423,7 @@
 
     <script>
         function validatePassword(password) {
-            const minLength = /.{6,}/;  // At least 6 characters
+            const minLength = /.{6,}/;  // At least 8 characters
             const upperCase = /[A-Z]/;  // At least one uppercase letter
             const lowerCase = /[a-z]/;  // At least one lowercase letter
             const number = /[0-9]/;     // At least one number
@@ -464,28 +464,6 @@
             setTimeout(() => {
                 window.location.href = 'loginup.html';
             }, 2000);
-            document.addEventListener("DOMContentLoaded", function() {
-    // Fetch stored username and initials
-    const storedUsername = localStorage.getItem("playerName") || "Guest";
-    let storedInitials = localStorage.getItem("playerInitials");
-
-    // Generate initials if missing
-    if (!storedInitials && storedUsername !== "Guest") {
-        let words = storedUsername.trim().split(" ");
-        storedInitials = words.length === 1 ? words[0][0].toUpperCase() : words[0][0].toUpperCase() + words[1][0].toUpperCase();
-        localStorage.setItem("playerInitials", storedInitials);
-    }
-
-    // Display username in profile section
-    const usernameDisplay = document.getElementById("display-username");
-    if (usernameDisplay) {
-        usernameDisplay.innerHTML = `
-            <div class="profile-icon">${storedInitials}</div> 
-            <strong>${storedUsername}</strong>
-        `;
-    }
-});
-
         });
     </script>
 </body>
